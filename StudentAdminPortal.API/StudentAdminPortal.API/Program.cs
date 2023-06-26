@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using StudentAdminPortal.API.DataModel;
+using StudentAdminPortal.API.DataModels;
 using StudentAdminPortal.API.Profiles;
 using StudentAdminPortal.API.Repositories;
 

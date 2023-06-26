@@ -1,6 +1,4 @@
-﻿using StudentAdminPortal.API.DataModel;
-
-namespace StudentAdminPortal.API.DomainModels
+﻿namespace StudentAdminPortal.API.DomainModels
 {
     public class Student
     {
