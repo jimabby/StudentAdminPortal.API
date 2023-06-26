@@ -12,8 +12,8 @@ using StudentAdminPortal.API.DataModels;
 namespace StudentAdminPortal.API.Migrations
 {
     [DbContext(typeof(StudentAdminContext))]
-    [Migration("20230605053843_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20230626120818_Initial migrtion")]
+    partial class Initialmigrtion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace StudentAdminPortal.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("StudentAdminPortal.API.DataModel.Address", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Address", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace StudentAdminPortal.API.Migrations
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.DataModel.Gender", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Gender", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace StudentAdminPortal.API.Migrations
                     b.ToTable("Gender");
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.DataModel.Student", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Student", b =>
                 {
                     b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
@@ -87,9 +87,8 @@ namespace StudentAdminPortal.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Mobile")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("Mobile")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("ProfileImageUrl")
                         .HasColumnType("nvarchar(max)");
@@ -101,18 +100,18 @@ namespace StudentAdminPortal.API.Migrations
                     b.ToTable("Student");
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.DataModel.Address", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Address", b =>
                 {
-                    b.HasOne("StudentAdminPortal.API.DataModel.Student", null)
+                    b.HasOne("StudentAdminPortal.API.DataModels.Student", null)
                         .WithOne("Address")
-                        .HasForeignKey("StudentAdminPortal.API.DataModel.Address", "StudentId")
+                        .HasForeignKey("StudentAdminPortal.API.DataModels.Address", "StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.DataModel.Student", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Student", b =>
                 {
-                    b.HasOne("StudentAdminPortal.API.DataModel.Gender", "Gender")
+                    b.HasOne("StudentAdminPortal.API.DataModels.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -121,7 +120,7 @@ namespace StudentAdminPortal.API.Migrations
                     b.Navigation("Gender");
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.DataModel.Student", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Student", b =>
                 {
                     b.Navigation("Address")
                         .IsRequired();
